@@ -4,6 +4,7 @@
 
 Note：
     为了方便(懒比)直接调用curl，因此请在Linux下运行。
+    
     ip.txt --> 待检测IP
     shell.txt --> shell
 
