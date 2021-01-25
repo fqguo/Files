@@ -20,3 +20,5 @@ Note：
 shell：http://127.0.0.1/seeyon/SeeyonUpdate1.jspx 密码：rebeyond 冰蝎3连接
 
 #### 转载自：https://github.com/flywuhu/seeyonAjaxGetshell ，感谢大佬分享。
+
+seeyon20210125.py 为fofa批量搜索url脚本
